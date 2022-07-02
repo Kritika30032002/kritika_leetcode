@@ -20,12 +20,10 @@ public:
 	    // code here
 	    
 	    sort(arr.begin() , arr.end() , comp) ;
-	    string ans ;
-	    for(string s : arr)
-	    {
-	        ans+=s ;
-	    }
-	    return ans; 
+	    string ans="" ;
+	    for(int i=0;i<arr.size();i++)
+	           ans+=arr[i];
+	       return ans; 
 	}
 };
 
