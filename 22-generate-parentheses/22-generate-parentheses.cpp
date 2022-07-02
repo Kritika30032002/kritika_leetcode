@@ -22,7 +22,7 @@ public:
     vector<string> generateParenthesis(int n) {
         
         vector<string> v;
-        int oc = 0, cc = 0;
+        int oc = 0, cc = 0;  //opening count,closing count
         helper(v, n, oc, cc, "");
         return v;
     }
