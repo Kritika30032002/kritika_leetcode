@@ -9,34 +9,36 @@ using namespace std;
 
 class Solution {
 public:
-    int solveWordWrap(vector<int>nums, int k) 
+int dp[501];
+   int n;
+   int k;
+   int recur(int i,int j,vector<int>&nums){
+       if(i>=n){
+           return 0;
+       }
+       if(dp[i]!=-1)return dp[i];
+       int su=0;
+       int ans=INT_MAX;
+       for(int j=i; j<n;j++){
+           su+=nums[j];
+           if(k-su<0)break;
+           if(j<n-1)
+           ans=min(ans,(k-su)*(k-su)+recur(j+1,j-i+1,nums));
+           else ans=0+recur(j+1,j-i+1,nums);
+           
+           su++;
+       }
+       return dp[i]=ans;
+   }
+    int solveWordWrap(vector<int>nums, int K) 
     { 
         // Code here
-          int n=nums.size();
-     int dp[n+1];
-     dp[n]=0;
-     dp[n-1]=0;
-     if(n==1){return 0;}
-     
-     for(int i=n-2;i>=0;i=i-1)
-     {
-         int curr=nums[i];
-         dp[i]=dp[i+1]+(k-nums[i])*(k-nums[i]);
-          
-         int aja=1;
-         while(aja<n-i)
-         {   
-             curr=curr+nums[i+aja]+1;
-          
-             if(curr<=k)
-             {   if(i+aja==n-1){dp[i]=0;}
-                 else{dp[i]=min(dp[i],(k-curr)*(k-curr)+dp[i+aja+1]);}
-             }
-             else{break;}
-            aja=aja+1;
-         }
-     }
-     return dp[0];
+            n=nums.size();
+       k=K;
+       memset(dp,-1,sizeof(dp));
+       int ans=recur(0,0,nums);
+      
+       return ans;
     } 
 };
 
