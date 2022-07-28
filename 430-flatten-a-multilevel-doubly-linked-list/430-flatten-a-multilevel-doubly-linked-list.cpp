@@ -19,7 +19,8 @@ class Solution {
             if(child){
                 Node* _tail = flatten_rec(child);
                 _tail->next = next;
-                if(next) next->prev = _tail;
+                if(next) 
+                    next->prev = _tail;
                 curr->next = child;
                 curr->child = nullptr;
                 child->prev = curr;
@@ -33,7 +34,8 @@ class Solution {
     }
 public:
     Node* flatten(Node* head) {
-        if(head) flatten_rec(head);
+        if(head) 
+            flatten_rec(head);
         return head;
     }
 };
