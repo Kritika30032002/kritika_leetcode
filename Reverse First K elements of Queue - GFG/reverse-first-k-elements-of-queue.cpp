@@ -35,18 +35,21 @@ queue<int> modifyQueue(queue<int> q, int k) {
     // add code here.
     stack<int> s;
     
+    //step1 - pop first k elements from queue and push into stack
     for(int i=0;i<k;i++){
         int element=q.front();
         q.pop();
         s.push(element);
     }
     
+    //step2 - push k elements from stack into queue
     while(!s.empty()){
         int element=s.top();
         s.pop();
         q.push(element);
     }
     
+    //step3 - fetch first n-k from queue and push back to queue 
     int t=q.size()-k;
     
     while(t--){
