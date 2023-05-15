@@ -32,3 +32,5 @@ public:
         return func(nums, 1, 0, dp, gcd);
     }
 };
+
+//https://github.com/MAZHARMIK/Interview_DS_Algo/blob/master/DP/Maximize%20Score%20After%20N%20Operations.cpp
