@@ -119,23 +119,7 @@ Node* solve(Node* first, Node* second){
 }
 
 
-Node* sortTwoLists(Node* first, Node* second)
-{
-    // Write your code here.
-    if (first==NULL){
-        return second;
-    }
-    if (second==NULL){
-        return first;
-    }
-    
-    if(first->data <= second->data){
-        return solve(first,second);
-    }
-    else{
-        return solve(second,first);
-    }
-}
+
 
 Node* sortedMerge(Node* first, Node* second)  
 {  
