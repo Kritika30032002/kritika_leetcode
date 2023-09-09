@@ -46,7 +46,7 @@ class Solution
         //go till that node
         cur->next=head;
         k=k%len;
-        // k=len-k;
+      
         while(k--)
             cur=cur->next;
         
