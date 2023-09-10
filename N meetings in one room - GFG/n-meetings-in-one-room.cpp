@@ -4,43 +4,27 @@ using namespace std;
 
 // } Driver Code Ends
 
-struct meeting {
-   int start;
-   int end;
-   int pos;
-};
 
 class Solution
 {
     public:
-      bool static comparator(struct meeting m1, meeting m2) {
-         if (m1.end < m2.end) return true;
-         else if (m1.end > m2.end) return false;
-         else if (m1.pos < m2.pos) return true;
-         return false;
-      }
-   int maxMeetings(int s[], int e[], int n) {
-      struct meeting meet[n];
-      for (int i = 0; i < n; i++) {
-         meet[i].start = s[i], meet[i].end = e[i], meet[i].pos = i + 1;
-      }
-
-      sort(meet, meet + n, comparator);
-
-      vector < int > answer;
-
-      int limit = meet[0].end;
-      answer.push_back(meet[0].pos);
-
-      for (int i = 1; i < n; i++) {
-         if (meet[i].start > limit) {
-            limit = meet[i].end;
-            answer.push_back(meet[i].pos);
-         }
-      }
-     
-     return answer.size();
-
+   
+   int maxMeetings(int start[], int end[], int n) {
+      vector<pair<int,int>>x;
+    for(int i=0;i<n;i++)
+       x.push_back({end[i],start[i]});
+    
+    sort(x.begin(),x.end());
+    int c=1;
+    int limit=x[0].first;
+    for(int i=1;i<x.size();i++)
+    {
+        if(x[i].second>limit){ 
+          c++;
+          limit=x[i].first;
+          }
+    }
+    return c;
    }
 
 };
