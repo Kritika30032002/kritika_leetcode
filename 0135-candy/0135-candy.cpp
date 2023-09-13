@@ -17,9 +17,16 @@ public:
         }
         
         
-        return accumulate(begin(count), end(count), 0);
+        // return accumulate(begin(count), end(count), 0);
+        
+         int result = 0;
+        for (auto t: count) result += t;
+        return result;
     }
 };
+
+ 
+       
 
 
 // https://www.youtube.com/watch?v=YUT13Koh5Jg
