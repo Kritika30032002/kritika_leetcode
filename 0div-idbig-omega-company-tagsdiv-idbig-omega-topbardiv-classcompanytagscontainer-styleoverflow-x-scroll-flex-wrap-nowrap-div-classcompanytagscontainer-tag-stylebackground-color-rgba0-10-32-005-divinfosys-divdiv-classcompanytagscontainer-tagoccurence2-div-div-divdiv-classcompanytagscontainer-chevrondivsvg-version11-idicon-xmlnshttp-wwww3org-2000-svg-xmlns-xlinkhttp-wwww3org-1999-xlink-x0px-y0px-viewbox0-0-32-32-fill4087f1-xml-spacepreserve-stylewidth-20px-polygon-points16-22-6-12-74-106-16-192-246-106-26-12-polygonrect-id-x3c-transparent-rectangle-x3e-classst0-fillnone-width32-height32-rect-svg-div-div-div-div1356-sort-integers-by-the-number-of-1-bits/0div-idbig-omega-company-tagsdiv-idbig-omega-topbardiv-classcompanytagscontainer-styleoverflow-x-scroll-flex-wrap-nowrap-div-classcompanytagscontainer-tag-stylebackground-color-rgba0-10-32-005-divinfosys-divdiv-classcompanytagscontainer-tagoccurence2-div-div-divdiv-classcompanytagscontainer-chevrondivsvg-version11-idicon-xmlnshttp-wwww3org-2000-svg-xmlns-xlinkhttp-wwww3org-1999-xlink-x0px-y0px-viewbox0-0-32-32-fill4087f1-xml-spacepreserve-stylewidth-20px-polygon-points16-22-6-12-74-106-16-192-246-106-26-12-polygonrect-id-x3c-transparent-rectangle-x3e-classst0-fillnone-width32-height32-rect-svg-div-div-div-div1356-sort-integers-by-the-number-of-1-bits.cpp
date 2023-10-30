@@ -1,19 +1,64 @@
+//Approach-1 (Using self written countBits function inside lambda)
+//T.C : O(n*logn * log(num)) 
+//The countOneBits loop iterates for the number of bits in the input number, which is log₂(n)
+//sort takes nlogn
 class Solution {
 public:
-    vector<int> sortByBits(vector<int>& arr) {
-        vector<int> ans;
-        vector<pair<int,int>> v;
-        for (auto val: arr){
-            int dem= val;
-            int cnt=0;
-            while (dem>0){
-                cnt+= (dem&1);
-                dem= dem>>1;
-            }
-            v.push_back({cnt,val});
+    int countOneBits(int num) {
+        
+        int count = 0;
+        while (num) {
+            
+            count += num & 1;
+            
+            num >>= 1;
         }
-        sort(v.begin(),v.end());
-        for (auto val: v)ans.push_back(val.second);
-        return ans;
+        
+        return count;
+        
+    }
+    vector<int> sortByBits(vector<int>& arr) {
+        
+        auto lambda = [&](int &a, int &b) {
+            
+            int count_a = countOneBits(a);
+            int count_b = countOneBits(b);
+            
+            if(count_a == count_b)
+                return a<b;
+            
+            return count_a < count_b;
+            
+        };
+        
+        sort(begin(arr), end(arr), lambda);
+        
+        return arr;
     }
 };
+
+
+//Approach-2 (using inbuilt function)
+//T.C : __builtin_popcount calculates the number of set bits (1 bits) in an integer in constant time, not depending on the size of the integer.
+//So, overall T.C : O(nlogn) by sorting
+// class Solution {
+// public:
+//     vector<int> sortByBits(vector<int>& arr) {
+        
+//         auto lambda = [&](int &a, int &b) {
+            
+//             int count_a = __builtin_popcount(a);
+//             int count_b = __builtin_popcount(b);
+            
+//             if(count_a == count_b)
+//                 return a<b;
+            
+//             return count_a < count_b;
+            
+//         };
+        
+//         sort(begin(arr), end(arr), lambda);
+        
+//         return arr;
+//     }
+// };
